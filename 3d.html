@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<canvas id="myCanvas" width="1500" height="700" style="border:0px solid #d3d3d3;"></canvas>
+
+<script>
+
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+
+
+// On A Plain.... woooooo  https://youtu.be/ZHsfIDl7ONo
+
+
+	for (var i=0;i<700;i+=5) {	
+		var _randA = 100*Math.random();
+		var _x = i;
+		var _y = 10*Math.sin(.1 * i);
+		var _shift = 10*Math.sin(.1 * i);
+		
+		if (_x < 500) {
+			_x = 500;
+		} else if (_x > 700) {
+			_x = 700
+		}
+		
+		ctx.beginPath();
+		ctx.lineTo(400, 300);
+		ctx.lineTo(500, i);
+		
+		for (var j = 500 ; j < 700 ; j++) {
+			if (j + _shift < 500) {
+				_shift = 0;		
+			} else if (j + _shift > 700) {
+				_shift = 700-j;
+			}
+			ctx.lineTo(j+_shift, 5*Math.sin(.1*j)+i);
+		}
+		
+		ctx.lineTo(700, i);
+		ctx.lineTo(800, 300);
+		ctx.stroke();
+	}
+
+/*
+
+// psedo peak oscillate
+
+for (var i=0;i<700;i+=5) {	
+	var _freq = 10
+	var _sinusoidA = (50/_freq)*Math.sin((.01 * _freq)*i)
+	var _sinusoidB = 50*Math.sin(.01 * i);
+	var _sinusoidC = _sinusoidA + _sinusoidB;
+	
+	ctx.beginPath();
+	ctx.lineTo(400, 300);
+	ctx.lineTo(600 + _sinusoidC, (700-i));
+	ctx.lineTo(800, 300);
+	ctx.stroke();
+}
+
+*/
+
+/*
+
+//vanilla
+
+for (var i=0;i<700;i+=10) {	
+	ctx.beginPath();
+	ctx.lineTo(400, 300);
+	ctx.lineTo(600, 700-i);
+	ctx.lineTo(800, 300);
+	ctx.stroke();
+}*/
+
+</script>
+
+
+</body>
+</html>
